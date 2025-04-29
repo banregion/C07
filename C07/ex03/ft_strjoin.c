@@ -24,7 +24,50 @@ int total_lengt(int size,char **strs,char *sep)
 	total += (size -1) * ft_strlen(sep);
 	return total;
 }
-char *ft_strjoin(int size, char **strs, char *sep)
+void	fill_joined_string(char *tab, char **strs, char *sep, int size)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	k = 0;
+	while (++i < size)
+	{
+		j = -1;
+		while (strs[i][++j])
+			tab[k++] = strs[i][j];
+		if (i < size - 1)
+		{
+			j = -1;
+			while (sep[++j])
+				tab[k++] = sep[j];
+		}
+	}
+	tab[k] = '\0';
+}
+
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	char	*tab;
+	int		len;
+
+	if (size <= 0)
+	{
+		tab = (char *)malloc(sizeof(char));
+		if (!tab)
+			return (NULL);
+		tab[0] = '\0';
+		return (tab);
+	}
+	len = total_length(size, strs, sep);
+	tab = (char *)malloc(sizeof(char) * (len + 1));
+	if (!tab)
+		return (NULL);
+	fill_joined_string(tab, strs, sep, size);
+	return (tab);
+}
+/*char *ft_strjoin(int size, char **strs, char *sep)
 {
 	int k;
 	int i;
