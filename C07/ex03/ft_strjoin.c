@@ -62,7 +62,7 @@ char *ft_strjoin(int size, char **strs, char *sep)
 	tab[k] = '\0';
 	return tab;
 }
-int main()
+/*int main()
 {
     char *words[] = {"hello", "world", "42"};
     char *sep = "-";
@@ -70,4 +70,24 @@ int main()
     printf("%s\n", joined);
     free(joined);
     return 0;
+}*/
+int	main(void)
+{
+	char	*arr[] = {"Hello", "42", "Network", "Cadet"};
+	char	*sep = "-";
+	char	*result;
+	int		size;
+
+	size = 4;
+	result = ft_strjoin(size, arr, sep);
+	if (result)
+	{
+		printf("Result: %s\n", result);
+		free(result);
+	}
+	else
+	{
+		printf("Memory allocation failed.\n");
+	}
+	return (0);
 }
